@@ -24,15 +24,20 @@ def main():
     apply_nest_asyncio_patch()
 
     # Start APIs
+    os.chdir("/content/.all_api/api.consumet.org")
+    consumet_log_file_path = "/content/consumet_api.log"
+    print("Starting Anime API...")
+    start_background_process(['npm', 'start'], consumet_log_file_path)
+    
     os.chdir("/content/.all_api/AnimeDexApi")
     anime_log_file_path = "/content/anime_api.log"
     print("Starting Anime API...")
     start_background_process(['wrangler', 'dev'], anime_log_file_path)
 
     os.chdir("/content/.all_api/Torrent-Api-py")
-    flask_log_file_path = "/content/torrent_api.log"
+    torrent_log_file_path = "/content/torrent_api.log"
     print("Starting Torrent API...")
-    start_background_process(['python3', 'main.py'], flask_log_file_path)
+    start_background_process(['python3', 'main.py'], torrent_log_file_path)
 
     os.chdir("/content/.all_api/vidsrc-api")
     vidsrc_log_file_path = "/content/vidsrc_api.log"
